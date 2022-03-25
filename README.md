@@ -62,7 +62,55 @@ Acquire::https::Proxy "http://mama1010:pwdfromMama1010@proxy.h-ka.de:8888/";
 ```
 3. Save the file and exit. The configuration will be applied after a reboot.
 
+## update Desktop PC
+```console
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt install net-tools
+```
+
+
 ### Konfigure PXE
+update bootloader of raspberry Pis
+## Konfigure Desktop PC
+# Static Ip for Cluster Network
+ Easyst way is with the Ubuntu Networkmanager
+ 1. Choose your network interface. In my case i coosed the faster Network interface PCI network interface
+ 2. coose IPv4 and Method = manuel an give wish adress
+ 3. Restart Networkmanager with ``` sudo systemctl restart NetworkManager.service``` or ```sudo service network-manager restart```
+ 4. start Switch and check with ifconfig if the right ip is choosen
+ 
+# dnsmaasq
+https://computingforgeeks.com/insztall-and-configure-dnsmasq-on-ubuntu/  25.3.2022
+Confiurge DHCP server and PXE server for Network boot
+Ubuntu 18.04+ comes with systemd-resolve which yu need to disable sice it binds port 53 which will conflict dnsmasq port
+```
+sudo systemctl diable systemd-resolved
+sudo systemctl stop systemd-resolved
+```
+Also remove the symlinked resolv.conf file
+```
+ls -lh /etc/resolv.conf
+sudo unlink /etc/resolv.conf
+```
+then create new resolv.conf
+```
+echo nameserver 8.8.8.8 | sudo tee /etc/resolv.conf
+```
+Install dnsmasq
+```
+sudo apt update
+sudo apt install dnsmasq
+```
+
+
+
+
+
+# static IP
+# rootfileSystem
+# 
+
 
 ### Kubernetes
 
