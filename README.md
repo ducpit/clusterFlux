@@ -83,24 +83,25 @@ update bootloader of raspberry Pis
 # dnsmaasq
 https://computingforgeeks.com/insztall-and-configure-dnsmasq-on-ubuntu/  25.3.2022
 Confiurge DHCP server and PXE server for Network boot
-Ubuntu 18.04+ comes with systemd-resolve which yu need to disable sice it binds port 53 which will conflict dnsmasq port
+1. Copy Default dnsmasq file 
+2. 
 ```
-sudo systemctl diable systemd-resolved
-sudo systemctl stop systemd-resolved
-```
-Also remove the symlinked resolv.conf file
-```
-ls -lh /etc/resolv.conf
-sudo unlink /etc/resolv.conf
-```
-then create new resolv.conf
-```
-echo nameserver 8.8.8.8 | sudo tee /etc/resolv.conf
-```
-Install dnsmasq
-```
-sudo apt update
-sudo apt install dnsmasq
+sudo cp /etc/dnsmasq.conf /etc/default_dnsmasq.conf
+sudo rm /etc/dnsmasq.conf
+sudo toch /etc/dnsmasq.conf
+
+sudo nano /etc/dnsmasq.conf
+-----------------------------------------
+interface=
+port= 0 no DNS only DHCP and TFTP
+dhcp-range=192.168.128.50,192.168.128.200,12h
+log-dhcp
+enable-tftp
+tftproot=/tftpboot
+pxe-service=0,"Raspberry Pi Boot"
+tftp-unique-root
+dhcp-host=MAC,CLIENTNAME,IP
+-----------------------------------------
 ```
 
 
