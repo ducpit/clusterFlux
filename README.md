@@ -98,6 +98,10 @@ pxe-service=0,"Raspberry Pi Boot"
 tftp-unique-root
 dhcp-host=MAC,CLIENTNAME,IP
 -----------------------------------------
+
+sudo systemctl enable dnsmasq.service
+sudo systemctl restart dnsmasq.service
+sudo reboot
 ```
 
 ## Downlad Raspberry Pi Image
