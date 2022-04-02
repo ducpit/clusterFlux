@@ -147,6 +147,20 @@ root=/dev/nfs nfsroot=192.168.128.46:/nfs/client1 rw ip=dhcp rootwait elevator=d
 sudo nano /nfs/leafNode1/etc/fstab
 comment all out with out proc line
 ```
+```console
+sudo rm -r /tftpboot/192.168.128.1
+sudo rm -r /nfs/leafNode1
+sudo mkdir -p /nfs/leafNode1
+sudo mkdir -p /tftpboot/192.168.128.1
+sudo cp -a /media/masternode/boot/* /tftpboot/192.168.128.1
+sudo cp -a /media/masternode/rootfs/* /nfs/leafNode1
+
+sudo touch /nfs/leafNode1/boot/ssh
+sudo nano /nfs/leafNode1/etc/hostname
+sudo nano /nfs/leafNode1/etc/hosts
+sudo nano /tftpboot/192.168.128.1/cmdline.txt
+sudo nano /nfs/leafNode1/etc/fstab
+```
 
 
 
