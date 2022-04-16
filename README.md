@@ -25,7 +25,22 @@ Windos: open cmd.exe type ``` diskpart ```
         exit
         ```
 
+## Script based Instalation or detail Guied
 
+## Scrpt Based Konfiguration
+1. Download and install Ubuntu Image
+2. Do Proxy Settings if needet with settingsProxy.py file
+3. update System  and Install Requiremnets
+   - dnsmasq
+   - nfs-kernel-server
+   - nfs-common
+   - tcpdmp
+   - net-tools
+4. Do dhcp if needet with settingsProxy.py file mac's of devices Needed
+5. Download RPI Images and flash it on a SD Card then use changeImage.py
+6. Do exports changes with settingsExports.py
+
+## Detail Guide
 
 ### Konfigure Proxy Setting
 ```diff
@@ -103,6 +118,26 @@ sudo systemctl enable dnsmasq.service
 sudo systemctl restart dnsmasq.service
 sudo reboot
 ```
+
+## NFS Swttings
+### Installation
+[link](https://wiki.ubuntuusers.de/NFS/)
+sudo apt-get install nfs-kernel-server 
+sudo apt-get install nfs-common
+### Freigaben
+Datei /etc/exports 
+
+check with exports -ra there is no exaption
+
+# Freigabe gilt nur für 192.168.1.13, jedoch nur mit Leserechten:
+/PFAD/ZUR/FREIGABE2      192.168.1.13(ro,async)
+# Freigabe gilt für alle IPs von 192.168.1.1 bis 192.168.1.255, mit Lese-/Schreibrechten:
+/PFAD/ZUR/FREIGABE3       192.168.1.0/255.255.255.0(rw,async)
+# Freigabe gilt nur für den Rechner mit dem Namen notebook
+/PFAD/ZUR/FREIGABE4      notebook(ro,async)
+ 
+
+
 
 ## Downlad Raspberry Pi Image
 
@@ -182,6 +217,10 @@ update the Bootloader [Tutorial](https://www.raspberry-pi-geek.de/ausgaben/rpg/2
 ### Kubernetes
 
 ## Leaf-Node (Raspberry PI)
+Download image and flash on  SD
+First DNSMasq Sciprt settings
+Image change scripts
+exportsscrpiz
 
 
 
