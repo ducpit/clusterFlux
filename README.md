@@ -11,6 +11,10 @@ Description of the creation of a high performance cluster, from 45 Raspberry Pis
 6. Create User => Username: masternode, Password: masterNode
 7. remove installation medium and reboot
 
+Fire wall -> ssh bootos
+```console
+sudo ufw allow ssh
+```
 #### Change USB-Boot-Drive to normal USB Stick
 
 [Link](https://www.diskpart.com/articles/unboot-usb-1984.html)
@@ -176,7 +180,7 @@ sudo systemctl restart nfs-kernel-server
 ```console
 sudo nano /tftpboot/IP_LeafNode_N/cmdline.txt
 
-root=/dev/nfs nfsroot=192.168.128.46:/nfs/client1 rw ip=dhcp rootwait elevator=deadline
+root=/dev/nfs nfsroot=192.168.128.46:/nfs/client1 rw ip=dhcp rootwait elevator=deadline cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory
 ```
 ```console
 sudo nano /nfs/leafNode1/etc/fstab
@@ -223,4 +227,4 @@ Image change scripts
 exportsscrpiz
 
 
-
+time to change script 45 min
