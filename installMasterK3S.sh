@@ -1,0 +1,1 @@
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--flannel-iface=enp0s25" sh -
